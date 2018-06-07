@@ -26,10 +26,6 @@
     </div>
   </div>
 
-
- 
-
-
   {!! Form::open(['action'=>'CalculateController@store','files'=>true]) !!}
 
   <div class="form-group">

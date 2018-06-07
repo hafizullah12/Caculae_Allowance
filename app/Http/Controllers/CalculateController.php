@@ -8,6 +8,7 @@ use PDF;
 use App\Session;
 use App\Factor;
 use DB;
+use App\Amount;
 
 
 class CalculateController extends Controller
@@ -32,31 +33,38 @@ class CalculateController extends Controller
 
     public function store(Request $request)
     {
-        
-        
- 
-
       
-        $factors = input::get('factor');
-        $factor_id = input::get('factor_id'); 
        
-         
-      
-      
-          foreach($factors as $factor)
-           {
-              
-              foreach($factor_id as $factor_id)
-            {
-               
-                echo "factor_id".$factor_id.'</br>';
-                
-            }
-            echo "How Much Factor". $factor.'</br>';
-            
-            }
 
+         $factors = $request->factor;
+         $factor_id = $request->factor_id;
+         //$count = count($factors);
+        // dd($factors,$factor_id,$count);
         
+        if(count($factors)>count($factor_id))
+        $count = count($factor_id);
+        else $count = count($factors);
+
+        for($i=0;$i<$count;$i++)
+        {
+           // echo $i;
+            $amount = new Amount();
+            $amount->factor = $factors[$i];
+            $amount->factor_id = $factor_id[$i];
+            $amount->save();
+            return 'ok';
+
+            
+        }
+
+       
+
+
+       
+        
+
+      
+
          
         
 
@@ -66,6 +74,13 @@ class CalculateController extends Controller
 
    
     }//end of function 
+
+    public function Data()
+    {
+
+        $factor_id = Amount::all();
+        return $factor_id;
+    }
 
 
     

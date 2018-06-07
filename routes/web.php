@@ -20,7 +20,7 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','CalculateController@index');
 Route::resource('soft','CalculateController');
-
+Route::get('/test','CalculateController@Data');
 
 Route::post('/select-ajax',['as'=>'select-ajax','uses'=>'CalculateController@selectAjax']);
 
