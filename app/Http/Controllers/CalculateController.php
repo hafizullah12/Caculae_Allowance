@@ -34,7 +34,9 @@ class CalculateController extends Controller
     public function store(Request $request)
     {
       
-          
+       
+
+    
         $name  = $request->name;
         $session = $request->session_id;
         $students = Session::find($session); //fetch all value against id 
@@ -43,40 +45,24 @@ class CalculateController extends Controller
         $semister_id = $request->id_semister;
         $course = DB::table('subjects')->find($semister_id);
         $course_code =  $course->course_code; 
-
     
        
-
         $factor = $request->factor;
         $rate = $request->rate;
-
         if(count($factor)> count($rate))
         $count = count($rate);
         else
         $count = count($factor);
-
         $total = 0;
         for($i=0;$i<$count;$i++)
         {
-        
+       echo $rate[$i];
             echo $factor[$i].'x'.$rate[$i].'<br>';
             $single = $factor[$i]*$rate[$i]*$students_no ;
-
              $total= $total+$single;
         }
        echo $total;
-
-        // view()->share('name',$name,'total',$total);
-        // //view()->share('data',$data);
-        
-       
-        // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        // $pdf = PDF::loadView('soft.result',['name'=>$name,'total'=>$total]);
-        // return $pdf->stream('result.pdf');
-       
-        // return view('soft.result');
-        
-        
+      
        
       
 

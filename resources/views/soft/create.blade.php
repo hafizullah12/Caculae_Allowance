@@ -57,7 +57,7 @@
     @foreach( $factors as $factor)
     <label for="">{{$factor->name}}</label>
    <input type="number" name="factor[]" min="0" max="5" class="form-control">
-   <input type="hidden" name="rate[]" value="{{$factor->rate} }" class="form-control">
+   <input type="hidden" name="rate[]" value="{{$factor->rate}}" class="form-control">
    @endforeach
     </div>
 
