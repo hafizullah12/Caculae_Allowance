@@ -9,7 +9,7 @@
 
 <div class="container">
   
-  <div class="row">
+   <div class="row">
       <div class="col-md-1">
         <img src="{{asset('public/images/nstu-logo.jpg')}}" alt="nstu-logo" 
         width="100" height="250" class="img-responsive" >
@@ -18,12 +18,12 @@
         <h1 style="line-height:60%"> <b>Noakhali Science and Technology University</b> </h1>
         <h2>Sonapur,Noakhali-3814,Bangladesh</h2>
        </div>
-  </div>
+   </div>
 
-  <div class="row">
-    <div class="col-md-12" style="background:#e6e6e6">
-<p style="font-size:22px;margin-top:5px;" class="text-center">Calculate Allowance</p>
-    </div>
+      <div class="row">
+        <div class="col-md-12" style="background:#e6e6e6">
+        <p style="font-size:22px;margin-top:5px;" class="text-center">Calculate Allowance</p>
+     </div>
   </div>
 
   {!! Form::open(['action'=>'CalculateController@store','files'=>true]) !!}
@@ -57,7 +57,7 @@
     @foreach( $factors as $factor)
     <label for="">{{$factor->name}}</label>
    <input type="number" name="factor[]" min="0" max="5" class="form-control">
-   <input type="hidden" name="factor_id[]" value="{{$factor->id}}" class="form-control">
+   <input type="hidden" name="rate[]" value="{{$factor->rate} }" class="form-control">
    @endforeach
     </div>
 

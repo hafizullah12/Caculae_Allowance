@@ -114,15 +114,15 @@ class CalculateController extends Controller
         //return $data;
 
 
-        // view()->share('name',$name,'total',$total);
-        // //view()->share('data',$data);
+        view()->share('name',$name,'total',$total);
+        //view()->share('data',$data);
         
        
-        // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
-        // $pdf = PDF::loadView('soft.result',['name'=>$name,'total'=>$total]);
-        // return $pdf->stream('result.pdf');
+        PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView('soft.result',['name'=>$name,'total'=>$total]);
+        return $pdf->stream('result.pdf');
        
-        // return view('soft.result');
+        return view('soft.result');
     }
 
 

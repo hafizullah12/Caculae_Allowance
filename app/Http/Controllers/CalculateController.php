@@ -34,28 +34,51 @@ class CalculateController extends Controller
     public function store(Request $request)
     {
       
+          
+        $name  = $request->name;
+        $session = $request->session_id;
+        $students = Session::find($session); //fetch all value against id 
+        $session = $students->name;
+        $students_no = $students->students; //only single value 
+        $semister_id = $request->id_semister;
+        $course = DB::table('subjects')->find($semister_id);
+        $course_code =  $course->course_code; 
+
+    
        
 
-         $factors = $request->factor;
-         $factor_id = $request->factor_id;
-         //$count = count($factors);
-        // dd($factors,$factor_id,$count);
-        
-        if(count($factors)>count($factor_id))
-        $count = count($factor_id);
-        else $count = count($factors);
+        $factor = $request->factor;
+        $rate = $request->rate;
 
+        if(count($factor)> count($rate))
+        $count = count($rate);
+        else
+        $count = count($factor);
+
+        $total = 0;
         for($i=0;$i<$count;$i++)
         {
-           // echo $i;
-            $amount = new Amount();
-            $amount->factor = $factors[$i];
-            $amount->factor_id = $factor_id[$i];
-            $amount->save();
-            return 'ok';
+        
+            echo $factor[$i].'x'.$rate[$i].'<br>';
+            $single = $factor[$i]*$rate[$i]*$students_no ;
 
-            
+             $total= $total+$single;
         }
+       echo $total;
+
+        // view()->share('name',$name,'total',$total);
+        // //view()->share('data',$data);
+        
+       
+        // PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+        // $pdf = PDF::loadView('soft.result',['name'=>$name,'total'=>$total]);
+        // return $pdf->stream('result.pdf');
+       
+        // return view('soft.result');
+        
+        
+       
+      
 
        
 
@@ -75,12 +98,7 @@ class CalculateController extends Controller
    
     }//end of function 
 
-    public function Data()
-    {
-
-        $factor_id = Amount::all();
-        return $factor_id;
-    }
+  
 
 
     
