@@ -33,10 +33,6 @@ class CalculateController extends Controller
 
     public function store(Request $request)
     {
-      
-       
-
-    
         $name  = $request->name;
         $session = $request->session_id;
         $students = Session::find($session); //fetch all value against id 
@@ -45,8 +41,8 @@ class CalculateController extends Controller
         $semister_id = $request->id_semister;
         $course = DB::table('subjects')->find($semister_id);
         $course_code =  $course->course_code; 
-    
-       
+       // $factors = DB::table('factors')->select('name')->get();
+      
         $factor = $request->factor;
         $rate = $request->rate;
         if(count($factor)> count($rate))
@@ -56,31 +52,29 @@ class CalculateController extends Controller
         $total = 0;
         for($i=0;$i<$count;$i++)
         {
-       echo $rate[$i];
-            echo $factor[$i].'x'.$rate[$i].'<br>';
+            $number = $factor[$i];
+            $amount = $factor[$i].'x'.$rate[$i];
             $single = $factor[$i]*$rate[$i]*$students_no ;
-             $total= $total+$single;
+            $total= $total+$single;
+            
         }
-       echo $total;
-      
+       //echo $total;
+       $factors = Factor::all();
        
+    //    $data = ['factors'=>$factors];
       
-
+       //view()->share('name',$name,'total',$total);
+      //view()->share('data',$data); 
+      PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+       $pdf = PDF::loadView('soft.result',[
+           'session'=> $session,'name'=>$name,'total'=>$total,'factors'=>$factors,
+           'amount'=>$amount,'count'=>$count
+           ]);
+       //$pdf->setPaper('A4', 'landscape');
+       return $pdf->stream('result.pdf');
+       return view('soft.result');
        
-
-
-       
-        
-
-      
-
-         
-        
-
-
-
-
-
+     
    
     }//end of function 
 

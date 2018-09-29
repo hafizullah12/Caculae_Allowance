@@ -4,6 +4,8 @@
 	<title>Calculate Allowance</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -25,8 +27,8 @@
         <p style="font-size:22px;margin-top:5px;" class="text-center">Calculate Allowance</p>
      </div>
   </div>
-
-  {!! Form::open(['action'=>'CalculateController@store','files'=>true]) !!}
+  <div class="row">
+  {!! Form::open(['action'=>'ResultController@store','files'=>true]) !!}
 
   <div class="form-group">
       {!! Form::label('Session') !!}
@@ -37,41 +39,135 @@
       @endforeach 
       </select>
     </div>
-
-     <div class="form-group">
+   
+   
+    <div class="col-4"> 
+    <div class="form-group">
       {!! Form::label('Semister') !!}
       {!! Form::select('id_semister',[''=>'--- Select Semister---']+$semisters,null,['class'=>'form-control']) !!}
+    </div>
     </div>
 
     <div class="form-group">
       <label>Select Subject:</label>
       {!! Form::select('id_subject',[''=>'--- Select Subject ---'],null,['class'=>'form-control']) !!}
     </div>
-<hr>
+<!-- <hr> -->
     <div class="form-group">
     {!! Form::label('Teacher name') !!}
    <input type="text" name="name" class="form-control">
     </div>
+    <a href="#demo1" class="btn btn-info" data-toggle="collapse">Class Test 1</a>
+     <div id="demo1" class="collapse">
+      <div class="form-group">
+      {!!Form::label('No. Of Students')!!}
+     <input type="text" name="ct_1" class="form-control" placeholder="Enter Number Of Students">
+     </div>
+
+     </div>
+
+       <a href="#demo4" class="btn btn-info" data-toggle="collapse">Class Test 2</a>
+     <div id="demo4" class="collapse">
+      <div class="form-group">
+      {!!Form::label('No. Of Students')!!}
+     <input type="text" name="ct_2" class="form-control" placeholder="Enter Number Of Students">
+     </div>
+
+     </div>
+
+      <a href="#demo5" class="btn btn-info" data-toggle="collapse">Class Test 3</a>
+     <div id="demo5" class="collapse">
+      <div class="form-group">
+      {!!Form::label('No. Of Students')!!}
+     <input type="text" name="ct_3" class="form-control" placeholder="Enter Number Of Students">
+     </div>
+
+     </div>
+  <br>
+  <br>
 
     <div class="form-group">
-    @foreach( $factors as $factor)
-    <label for="">{{$factor->name}}</label>
-   <input type="number" name="factor[]" min="0" max="5" class="form-control">
-   <input type="hidden" name="rate[]" value="{{$factor->rate}}" class="form-control">
-   @endforeach
+    {!!Form::label('Prepare Question')!!}
+    <input type="text" name="question" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+ 
+    <div class="form-group">
+    {!!Form::label('Final Examination')!!}
+    <input type="text" name="final_student" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+
+      <div class="form-group">
+      {!! Form::label('Examination Committee') !!}
+      <select name="exam_committee" id="" class="form-control">
+      <option value="">--Select Option--</option>
+      <option value="chairman">Chairman</option>
+      <option value="member">Member</option>
+     </select>
     </div>
 
 
+ <div class="form-group">
+    {!!Form::label('Result Tabulation')!!}
+    <input type="text" name="tabulation" class="form-control" placeholder="Enter Number Of Students">
+ </div>
+    
 
-   
+  
+   <!-- <br>  <br>  <br>  <br> -->
+   <div class="form-group">
+    {!!Form::label('Thesis/Project Presentation')!!}
+    <input type="text" name="presentation" class="form-control" placeholder="Enter Number Of Students">
+    </div>
 
     <div class="form-group">
-      <button class="btn btn-success" type="submit">Submit</button>
+    {!!Form::label('Thesis/Project Evalution')!!}
+    <input type="text" name="evalution" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+
+    <a href="#demo" class="btn btn-info" data-toggle="collapse">Scrutinizing 1</a>
+  <div id="demo" class="collapse">
+  <div class="form-group">
+      <label>Subject Name:</label>
+    <input type="text" name="sercetizing_sub_1" class="form-control">
+    </div>
+    <div class="form-group">
+    {!!Form::label('No. Of Students')!!}
+    <input type="text" name="sercetizing_student_1" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+    </div>
+
+     <a href="#demo7" class="btn btn-info" data-toggle="collapse">Scrutinizing 2</a>
+  <div id="demo7" class="collapse">
+  <div class="form-group">
+      <label>Subject Name:</label>
+    <input type="text" name="sercetizing_sub_2" class="form-control">
+    </div>
+    <div class="form-group">
+    {!!Form::label('No. Of Students')!!}
+    <input type="text" name="sercetizing_student_2" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+    </div>
+    <a href="#demo8" class="btn btn-info" data-toggle="collapse">Scrutinizing 3</a>
+  <div id="demo8" class="collapse">
+  <div class="form-group">
+      <label>Subject Name:</label>
+    <input type="text" name="sercetizing_sub_3" class="form-control">
+    </div>
+    <div class="form-group">
+    {!!Form::label('No. Of Students')!!}
+    <input type="text" name="sercetizing_student_3" class="form-control" placeholder="Enter Number Of Students">
+    </div>
+    </div>
+
+<br><br>
+    <div class="form-group">
+      <button class="btn btn-success btn-block" type="submit">Calculate</button>
     </div>
 
   {!! Form::close() !!}
+  <div>
 
-</div>
+  </div>   <!-- end of Container -->
 
 <script type="text/javascript">
   $("select[name='id_semister']").change(function(){

@@ -115,7 +115,7 @@ class CalculateController extends Controller
 
 
         view()->share('name',$name,'total',$total);
-        //view()->share('data',$data);
+        view()->share('data',$data);
         
        
         PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
